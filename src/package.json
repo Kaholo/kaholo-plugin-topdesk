@@ -1,0 +1,14 @@
+{
+	"name": "kaholo-plugin-topdesk",
+	"version": "1.0.0",
+	"description": "Kaholo plugin for integration with TopDesk API.",
+	"main": "app.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Kaholo Group",
+	"license": "ISC",
+	"dependencies": {
+		"node-fetch": "2.6.6"
+	}
+}
