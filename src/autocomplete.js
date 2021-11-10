@@ -64,12 +64,12 @@ async function listIncidents(query, pluginSettings, triggerParameters){
   const settings = mapAutoParams(pluginSettings), params = mapAutoParams(triggerParameters);
   const client = TopDeskService.from(params, settings);
   const toAuto = (incident) => getAutoResult(incident.id, `${incident.number}${incident.category ? `(${incident.category})` : ""} ${incident.briefDescription || ""}`);
-  var result = await client.listIncidents({
+  var result = (await client.listIncidents({
     fields: ["id", "number", "briefDescription", "category"],
     sort: ["DESC number"],
     pageSize: MAX_RESULTS,
     fiqlQuery: query ? `id=sw=${query},number=sw=${query},briefDescription=sw=${query},category.name=sw=${query}` : undefined
-  }).map(toAuto);
+  })).map(toAuto);
   var pageStart=0;
   while (result.length === 0) {
     try {

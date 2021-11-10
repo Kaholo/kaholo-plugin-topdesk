@@ -19,7 +19,7 @@
             "name": "username",
             "viewName": "Username",
             "type": "string",
-            "description": "The username of the default user to authenticate to TopDesk with.",
+            "description": "The username of the default user to authenticate to TopDesk with on default.",
             "placeholder": "myuser",
             "learnUrl": "https://developers.topdesk.com/tutorial.html"
         },
@@ -42,7 +42,7 @@
                     "viewName": "TopDesk URL",
                     "type": "string",
                     "placeholder": "https://example.topdesk.net/",
-                    "description": "The URL to connect to TopDesk with on default."
+                    "description": "The URL to connect to TopDesk with."
                 },
                 {
                     "name": "username",
@@ -80,7 +80,7 @@
                     "viewName": "TopDesk URL",
                     "type": "string",
                     "placeholder": "https://example.topdesk.net/",
-                    "description": "The URL to connect to TopDesk with on default."
+                    "description": "The URL to connect to TopDesk with."
                 },
                 {
                     "name": "username",
@@ -116,6 +116,13 @@
                     "placeholder": "First Line"
                 },
                 {
+                    "name": "callerLookup",
+                    "viewName": "Caller Lookup",
+                    "type": "string",
+                    "description": "The ID/Email of the caller of the incident. Associate the incident with the caller with the specified field.",
+                    "placeholder": "example@email.net"
+                },
+                {
                     "name": "request",
                     "viewName": "Request",
                     "type": "text",
@@ -134,13 +141,6 @@
                     "viewName": "Action Invisible For Caller",
                     "type": "boolean",
                     "description": "Whether the action field is invisible for callers."
-                },
-                {
-                    "name": "callerLookup",
-                    "viewName": "Caller Lookup",
-                    "type": "string",
-                    "description": "The ID/name/Email of the caller of the incident. Associate the incident with the caller with the specified field. Names should be in the format of 'LastName, FirstName'.",
-                    "placeholder": "Lastname, Firstname"
                 },
                 {
                     "name": "description",
@@ -269,7 +269,7 @@
                     "viewName": "TopDesk URL",
                     "type": "string",
                     "placeholder": "https://example.topdesk.net/",
-                    "description": "The URL to connect to TopDesk with on default."
+                    "description": "The URL to connect to TopDesk with."
                 },
                 {
                     "name": "username",
@@ -296,44 +296,11 @@
                     "description": "The incident to return information about."
                 },
                 {
-                    "name": "url",
-                    "viewName": "TopDesk URL",
+                    "name": "callerLookup",
+                    "viewName": "Caller Lookup",
                     "type": "string",
-                    "placeholder": "https://example.topdesk.net/",
-                    "description": "The URL to connect to TopDesk with on default."
-                },
-                {
-                    "name": "username",
-                    "viewName": "Username",
-                    "type": "string",
-                    "description": "The username of the user to authenticate to TopDesk with.",
-                    "placeholder": "myuser",
-                    "learnUrl": "https://developers.topdesk.com/tutorial.html"
-                },
-                {
-                    "name": "appPassword",
-                    "viewName": "Application Password",
-                    "type": "vault",
-                    "description": "The application password to authenticate to TopDesk with.",
-                    "placeholder": "rk123-du234-wq345-agjjz-test1",
-                    "learnUrl": "https://developers.topdesk.com/tutorial.html"
-                },
-                {
-                    "name": "incidentType",
-                    "viewName": "Incident Type",
-                    "type": "options",
-                    "description": "Type of the incident. Called 'status' field in the API.",
-                    "options": [
-                        {
-                            "id": "firstLine",
-                            "name": "First Line"
-                        },
-                        {
-                            "id": "secondLine",
-                            "name": "Second Line"
-                        }
-                    ],
-                    "placeholder": "First Line"
+                    "description": "The ID/Email of the caller of the incident. Associate the incident with the caller with the specified field.",
+                    "placeholder": "example@email.net"
                 },
                 {
                     "name": "request",
@@ -355,13 +322,7 @@
                     "type": "boolean",
                     "description": "Whether the action field is invisible for callers."
                 },
-                {
-                    "name": "callerLookup",
-                    "viewName": "Caller Lookup",
-                    "type": "string",
-                    "description": "The ID/name/Email of the caller of the incident. Associate the incident with the caller with the specified field. Names should be in the format of 'LastName, FirstName'.",
-                    "placeholder": "Lastname, Firstname"
-                },
+                
                 {
                     "name": "description",
                     "viewName": "Brief Description",
@@ -489,7 +450,7 @@
                     "viewName": "TopDesk URL",
                     "type": "string",
                     "placeholder": "https://example.topdesk.net/",
-                    "description": "The URL to connect to TopDesk with on default."
+                    "description": "The URL to connect to TopDesk with."
                 },
                 {
                     "name": "username",
