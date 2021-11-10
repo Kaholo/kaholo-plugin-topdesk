@@ -21,15 +21,14 @@ async function fetch({basicAuth, url, method, payload, query}){
     return nodeFetch(url, options);
 }
 
-async function parseIncident(params){
+function parseIncident(params){
     if (!params.incidentType) throw "Must provide incident type";
 
     const callerLookup = parsers.string(params.callerLookup);
     
     return removeUndefined({
         callerLookup:   /^([0-9a-f]{8,8}-)([0-9a-f]{4,4}-){3,3}([0-9a-f]{12,12})$/.test(callerLookup) ? {id: callerLookup} : 
-                        /^.+@.+\..+$/.test(callerLookup) ? {email: callerLookup} : 
-                        callerLookup ? {name: callerLookup} : undefined,
+                        /^.+@.+\..+$/.test(callerLookup) ? {email: callerLookup} : undefined,
         status: params.incidentType,
         request: parsers.string(params.request),
         action: parsers.string(params.action),

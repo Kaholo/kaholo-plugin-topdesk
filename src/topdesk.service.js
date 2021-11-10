@@ -43,7 +43,7 @@ module.exports = class Topdesk{
         });
         if (response.ok) return response.json();
         if (response.status === 400) {
-            throw `Problem with one of the provided parameters: ${response.statusText}`;
+            throw `Problem with one or more of the provided parameters: ${await response.text() || ""}`;
         }
         if (response.status === 403){
             throw `Forbidden: You don't have the permissions to the resource: ${path}`;
