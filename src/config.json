@@ -1,517 +1,513 @@
 {
-    "name": "TopDesk",
-    "type": "executer",
-    "execProgram": "node",
-    "main": "app.js",
-    "exposeRoute": true,
-    "imgUrl": "logo.png",
-    "version": "1.0.0",
-    "description": "Integration with TopDesk API.",
-    "settings": [
+  "name": "TopDesk",
+  "type": "executer",
+  "execProgram": "node",
+  "main": "app.js",
+  "exposeRoute": true,
+  "imgUrl": "logo.png",
+  "version": "1.0.2",
+  "description": "Integration with TopDesk API.",
+  "settings": [
+    {
+      "name": "url",
+      "viewName": "TopDesk URL",
+      "type": "string",
+      "placeholder": "https://example.topdesk.net/",
+      "description": "The URL to connect to TopDesk with on default."
+    },
+    {
+      "name": "username",
+      "viewName": "Username",
+      "type": "string",
+      "description": "The username of the default user to authenticate to TopDesk with on default.",
+      "placeholder": "myuser",
+      "learnUrl": "https://developers.topdesk.com/tutorial.html"
+    },
+    {
+      "name": "appPassword",
+      "viewName": "Application Password",
+      "type": "vault",
+      "description": "The application password to authenticate to TopDesk with on default.",
+      "placeholder": "rk123-du234-wq345-agjjz-test1",
+      "learnUrl": "https://developers.topdesk.com/tutorial.html"
+    }
+  ],
+  "methods": [
+    {
+      "name": "getIncident",
+      "viewName": "Get Incident",
+      "params": [
         {
-            "name": "url",
-            "viewName": "TopDesk URL",
-            "type": "string",
-            "placeholder": "https://example.topdesk.net/",
-            "description": "The URL to connect to TopDesk with on default."
+          "name": "url",
+          "viewName": "TopDesk URL",
+          "type": "string",
+          "placeholder": "https://example.topdesk.net/",
+          "description": "The URL to connect to TopDesk with."
         },
         {
-            "name": "username",
-            "viewName": "Username",
-            "type": "string",
-            "description": "The username of the default user to authenticate to TopDesk with on default.",
-            "placeholder": "myuser",
-            "learnUrl": "https://developers.topdesk.com/tutorial.html"
+          "name": "username",
+          "viewName": "Username",
+          "type": "string",
+          "description": "The username of the user to authenticate to TopDesk with.",
+          "placeholder": "myuser",
+          "learnUrl": "https://developers.topdesk.com/tutorial.html"
         },
         {
-            "name": "appPassword",
-            "viewName": "Application Password",
-            "type": "vault",
-            "description": "The application password to authenticate to TopDesk with on default.",
-            "placeholder": "rk123-du234-wq345-agjjz-test1",
-            "learnUrl": "https://developers.topdesk.com/tutorial.html"
+          "name": "appPassword",
+          "viewName": "Application Password",
+          "type": "vault",
+          "description": "The application password to authenticate to TopDesk with.",
+          "placeholder": "rk123-du234-wq345-agjjz-test1",
+          "learnUrl": "https://developers.topdesk.com/tutorial.html"
+        },
+        {
+          "name": "incident",
+          "viewName": "Incident",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listIncidentsAuto",
+          "description": "The incident to return information about.",
+          "placeholder": "Incident 1"
         }
-    ],
-    "methods":[
+      ]
+    },
+    {
+      "name": "createIncident",
+      "viewName": "Create Incident",
+      "params": [
         {
-            "name": "getIncident", 
-            "viewName": "Get Incident",
-            "params":[
-                {
-                    "name": "url",
-                    "viewName": "TopDesk URL",
-                    "type": "string",
-                    "placeholder": "https://example.topdesk.net/",
-                    "description": "The URL to connect to TopDesk with."
-                },
-                {
-                    "name": "username",
-                    "viewName": "Username",
-                    "type": "string",
-                    "description": "The username of the user to authenticate to TopDesk with.",
-                    "placeholder": "myuser",
-                    "learnUrl": "https://developers.topdesk.com/tutorial.html"
-                },
-                {
-                    "name": "appPassword",
-                    "viewName": "Application Password",
-                    "type": "vault",
-                    "description": "The application password to authenticate to TopDesk with.",
-                    "placeholder": "rk123-du234-wq345-agjjz-test1",
-                    "learnUrl": "https://developers.topdesk.com/tutorial.html"
-                },
-                {
-                    "name": "incident",
-                    "viewName": "Incident",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listIncidentsAuto",
-                    "description": "The incident to return information about.",
-                    "placeholder": "Incident 1"
-                }
-            ]
+          "name": "url",
+          "viewName": "TopDesk URL",
+          "type": "string",
+          "placeholder": "https://example.topdesk.net/",
+          "description": "The URL to connect to TopDesk with."
         },
         {
-            "name": "createIncident",
-            "viewName": "Create Incident",
-            "params":[
-                {
-                    "name": "url",
-                    "viewName": "TopDesk URL",
-                    "type": "string",
-                    "placeholder": "https://example.topdesk.net/",
-                    "description": "The URL to connect to TopDesk with."
-                },
-                {
-                    "name": "username",
-                    "viewName": "Username",
-                    "type": "string",
-                    "description": "The username of the user to authenticate to TopDesk with.",
-                    "placeholder": "myuser",
-                    "learnUrl": "https://developers.topdesk.com/tutorial.html"
-                },
-                {
-                    "name": "appPassword",
-                    "viewName": "Application Password",
-                    "type": "vault",
-                    "description": "The application password to authenticate to TopDesk with.",
-                    "placeholder": "rk123-du234-wq345-agjjz-test1",
-                    "learnUrl": "https://developers.topdesk.com/tutorial.html"
-                },
-                {
-                    "name": "incidentType",
-                    "viewName": "Incident Type",
-                    "type": "options",
-                    "description": "Type of the incident. Called 'status' field in the API.",
-                    "options": [
-                        {
-                            "id": "firstLine",
-                            "name": "First Line"
-                        },
-                        {
-                            "id": "secondLine",
-                            "name": "Second Line"
-                        }
-                    ],
-                    "placeholder": "First Line"
-                },
-                {
-                    "name": "callerLookup",
-                    "viewName": "Caller Lookup",
-                    "type": "string",
-                    "description": "The ID/Email of the caller of the incident. Associate the incident with the caller with the specified field.",
-                    "placeholder": "example@email.net"
-                },
-                {
-                    "name": "request",
-                    "viewName": "Request",
-                    "type": "text",
-                    "description": "The request details for the incident.",
-                    "placeholder": "Request Details"
-                },
-                {
-                    "name": "action",
-                    "viewName": "Action",
-                    "type": "text",
-                    "description": "Describe the actions done to fix this incident. ",
-                    "placeholder": "Provided required assitance."
-                },
-                {
-                    "name": "actionInvisibleForCaller",
-                    "viewName": "Action Invisible For Caller",
-                    "type": "boolean",
-                    "description": "Whether the action field is invisible for callers."
-                },
-                {
-                    "name": "description",
-                    "viewName": "Brief Description",
-                    "type": "string",
-                    "description": "Brief description of the incident.",
-                    "placeholder": "Incident description"
-
-                },
-                {
-                    "name": "entryType",
-                    "viewName": "Entry Type",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listEntryTypesAuto",
-                    "description": "The entry type of the incident.",
-                    "placeholder": "My Alert Entry Type"
-
-                },
-                {
-                    "name": "callType",
-                    "viewName": "Call Type",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listCallTypesAuto",
-                    "description": "The call type of the incident.",
-                    "placeholder": "My Alert Call Type"
-                },
-                {
-                    "name": "category",
-                    "viewName": "Category",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listCategoriesAuto",
-                    "description": "The category of the incident.",
-                    "placeholder": "My Alert Category"
-                },
-                {
-                    "name": "subcategory",
-                    "viewName": "Subcategory",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listSubcategoriesAuto",
-                    "description": "The subcategory of the incident.",
-                    "placeholder": "My Alert Subategory"
-                },
-                {
-                    "name": "externalNumber",
-                    "viewName": "External Number",
-                    "type": "string",
-                    "description": "External number of the incident.",
-                    "placeholder": "1234"
-                },
-                {
-                    "name": "locationBranch",
-                    "viewName": "Location Branch ID",
-                    "type": "string",
-                    "description": "The ID of the branch of the location associated with the incident.",
-                    "placeholder": "12345678-90ab-cdef-1234-567890abcdef"
-                },
-                {
-                    "name": "location",
-                    "viewName": "Location ID",
-                    "type": "string",
-                    "description": "The ID of the location associated with the incident.",
-                    "placeholder": "12345678-90ab-cdef-1234-567890abcdef"
-                },
-                {
-                    "name": "impact",
-                    "viewName": "Impact",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listImpactsAuto",
-                    "description": "The impact of the incident.",
-                    "placeholder": "My Incident Impact Type"
-                },
-                {
-                    "name": "urgency",
-                    "viewName": "Urgency",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listUrgenciesAuto",
-                    "description": "The urgency of the incident.",
-                    "placeholder": "My Incident Urgency Type"
-                },
-                {
-                    "name": "priority",
-                    "viewName": "Priority",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listPrioritiesAuto",
-                    "description": "The priority of the incident.",
-                    "placeholder": "P3"
-                },
-                {
-                    "name": "operator",
-                    "viewName": "Operator ID",
-                    "type": "string",
-                    "description": "The ID of the operator of the incident.",
-                    "placeholder": "12345678-90ab-cdef-1234-567890abcdef"
-                },
-                {
-                    "name": "processingStatus",
-                    "viewName": "Processing Status",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listProcessingStatusesAuto",
-                    "description": "The processing status of the incident.",
-                    "placeholder": "My Incident Processing Status Type"
-                },
-                {
-                    "name": "costs",
-                    "viewName": "Costs",
-                    "type": "string",
-                    "description": "Total costs of the incident.",
-                    "placeholder": "10.15"
-                }
-            ]
+          "name": "username",
+          "viewName": "Username",
+          "type": "string",
+          "description": "The username of the user to authenticate to TopDesk with.",
+          "placeholder": "myuser",
+          "learnUrl": "https://developers.topdesk.com/tutorial.html"
         },
         {
-            "name": "updateIncident",
-            "viewName": "Update Incident",
-            "params":[
-                {
-                    "name": "url",
-                    "viewName": "TopDesk URL",
-                    "type": "string",
-                    "placeholder": "https://example.topdesk.net/",
-                    "description": "The URL to connect to TopDesk with."
-                },
-                {
-                    "name": "username",
-                    "viewName": "Username",
-                    "type": "string",
-                    "description": "The username of the user to authenticate to TopDesk with.",
-                    "placeholder": "myuser",
-                    "learnUrl": "https://developers.topdesk.com/tutorial.html"
-                },
-                {
-                    "name": "appPassword",
-                    "viewName": "Application Password",
-                    "type": "vault",
-                    "description": "The application password to authenticate to TopDesk with.",
-                    "placeholder": "rk123-du234-wq345-agjjz-test1",
-                    "learnUrl": "https://developers.topdesk.com/tutorial.html"
-                },
-                {
-                    "name": "incident",
-                    "viewName": "Incident",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listIncidentsAuto",
-                    "description": "The incident to return information about."
-                },
-                {
-                    "name": "callerLookup",
-                    "viewName": "Caller Lookup",
-                    "type": "string",
-                    "description": "The ID/Email of the caller of the incident. Associate the incident with the caller with the specified field.",
-                    "placeholder": "example@email.net"
-                },
-                {
-                    "name": "request",
-                    "viewName": "Request",
-                    "type": "text",
-                    "description": "The request details for the incident.",
-                    "placeholder": "Request Details"
-                },
-                {
-                    "name": "action",
-                    "viewName": "Action",
-                    "type": "text",
-                    "description": "Describe the actions done to fix this incident. ",
-                    "placeholder": "Provided required assitance."
-                },
-                {
-                    "name": "actionInvisibleForCaller",
-                    "viewName": "Action Invisible For Caller",
-                    "type": "boolean",
-                    "description": "Whether the action field is invisible for callers."
-                },
-                
-                {
-                    "name": "description",
-                    "viewName": "Brief Description",
-                    "type": "string",
-                    "description": "Brief description of the incident.",
-                    "placeholder": "Incident description"
-
-                },
-                {
-                    "name": "entryType",
-                    "viewName": "Entry Type",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listEntryTypesAuto",
-                    "description": "The entry type of the incident.",
-                    "placeholder": "My Alert Entry Type"
-
-                },
-                {
-                    "name": "callType",
-                    "viewName": "Call Type",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listCallTypesAuto",
-                    "description": "The call type of the incident.",
-                    "placeholder": "My Alert Call Type"
-                },
-                {
-                    "name": "category",
-                    "viewName": "Category",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listCategoriesAuto",
-                    "description": "The category of the incident.",
-                    "placeholder": "My Alert Category"
-                },
-                {
-                    "name": "subcategory",
-                    "viewName": "Subcategory",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listSubcategoriesAuto",
-                    "description": "The subcategory of the incident.",
-                    "placeholder": "My Alert Subategory"
-                },
-                {
-                    "name": "externalNumber",
-                    "viewName": "External Number",
-                    "type": "string",
-                    "description": "External number of the incident.",
-                    "placeholder": "1234"
-                },
-                {
-                    "name": "locationBranch",
-                    "viewName": "Location Branch ID",
-                    "type": "string",
-                    "description": "The ID of the branch of the location associated with the incident.",
-                    "placeholder": "12345678-90ab-cdef-1234-567890abcdef"
-                },
-                {
-                    "name": "location",
-                    "viewName": "Location ID",
-                    "type": "string",
-                    "description": "The ID of the location associated with the incident.",
-                    "placeholder": "12345678-90ab-cdef-1234-567890abcdef"
-                },
-                {
-                    "name": "impact",
-                    "viewName": "Impact",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listImpactsAuto",
-                    "description": "The impact of the incident.",
-                    "placeholder": "My Incident Impact Type"
-                },
-                {
-                    "name": "urgency",
-                    "viewName": "Urgency",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listUrgenciesAuto",
-                    "description": "The urgency of the incident.",
-                    "placeholder": "My Incident Urgency Type"
-                },
-                {
-                    "name": "priority",
-                    "viewName": "Priority",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listPrioritiesAuto",
-                    "description": "The priority of the incident.",
-                    "placeholder": "P3"
-                },
-                {
-                    "name": "operator",
-                    "viewName": "Operator ID",
-                    "type": "string",
-                    "description": "The ID of the operator of the incident.",
-                    "placeholder": "12345678-90ab-cdef-1234-567890abcdef"
-                },
-                {
-                    "name": "processingStatus",
-                    "viewName": "Processing Status",
-                    "type": "autocomplete",
-                    "autocompleteType": "function",
-                    "functionName": "listProcessingStatusesAuto",
-                    "description": "The processing status of the incident.",
-                    "placeholder": "My Incident Processing Status Type"
-                },
-                {
-                    "name": "costs",
-                    "viewName": "Costs",
-                    "type": "string",
-                    "description": "Total costs of the incident.",
-                    "placeholder": "10.15"
-                }
-            ]
+          "name": "appPassword",
+          "viewName": "Application Password",
+          "type": "vault",
+          "description": "The application password to authenticate to TopDesk with.",
+          "placeholder": "rk123-du234-wq345-agjjz-test1",
+          "learnUrl": "https://developers.topdesk.com/tutorial.html"
         },
         {
-            "name": "listIncidents",
-            "viewName": "List Incidents",
-            "params":[
-                {
-                    "name": "url",
-                    "viewName": "TopDesk URL",
-                    "type": "string",
-                    "placeholder": "https://example.topdesk.net/",
-                    "description": "The URL to connect to TopDesk with."
-                },
-                {
-                    "name": "username",
-                    "viewName": "Username",
-                    "type": "string",
-                    "description": "The username of the user to authenticate to TopDesk with.",
-                    "placeholder": "myuser",
-                    "learnUrl": "https://developers.topdesk.com/tutorial.html"
-                },
-                {
-                    "name": "appPassword",
-                    "viewName": "Application Password",
-                    "type": "vault",
-                    "description": "The application password to authenticate to TopDesk with.",
-                    "placeholder": "rk123-du234-wq345-agjjz-test1",
-                    "learnUrl": "https://developers.topdesk.com/tutorial.html"
-                },
-                {
-                    "name": "fields",
-                    "viewName": "Return Fields",
-                    "type": "text",
-                    "description": "If specified, return only the specified fields about the incidents. You can enter multiple values by seperating each with a new line or comma.",
-                    "placeholder": "id\nnumber"
-                },
-                {
-                    "name": "sort",
-                    "viewName": "Sort By",
-                    "type": "text",
-                    "description": "If specified, the incidents in order by the specified fields. You can enter multiple values by seperating each with a new line or comma. By default all fields will be in ascending order. You can change the order of a field to descending by prefixing the name of the field with 'DESC '.",
-                    "placeholder": "DESC number"
-                },
-                {
-                    "name": "pageStart",
-                    "viewName": "Page Start",
-                    "type": "string",
-                    "description": "For Paging. Return results starting from the index specified. 0 by default.",
-                    "placeholder": "0"
-                },
-                {
-                    "name": "pageSize",
-                    "viewName": "pageSize",
-                    "type": "string",
-                    "description": "For Paging. Maximum number of incidents to return. 10 by default. Possible values are 1-10000.",
-                    "learnUrl": "https://developers.topdesk.com/tutorial.html",
-                    "placeholder": "10"
-                },
-                {
-                    "name": "returnPartialsAndArchived",
-                    "viewName": "Return Partials And Archived",
-                    "type": "boolean",
-                    "description": "Also return partial and archived incidents."
-                },
-                {
-                    "name": "fiqlQuery",
-                    "viewName": "FIQL Query",
-                    "type": "string",
-                    "description": "If specified, select which incidents should be returned by using the provided FIQL query.",
-                    "learnUrl": "https://developers.topdesk.com/tutorial.html#query",
-                    "placeholder": "id=sw=12345678-90ab"
-                }
-            ]
+          "name": "incidentType",
+          "viewName": "Incident Type",
+          "type": "options",
+          "description": "Type of the incident. Called 'status' field in the API.",
+          "options": [
+            {
+              "id": "firstLine",
+              "name": "First Line"
+            },
+            {
+              "id": "secondLine",
+              "name": "Second Line"
+            }
+          ],
+          "placeholder": "First Line"
+        },
+        {
+          "name": "callerLookup",
+          "viewName": "Caller Lookup",
+          "type": "string",
+          "description": "The ID/Email of the caller of the incident. Associate the incident with the caller with the specified field.",
+          "placeholder": "example@email.net"
+        },
+        {
+          "name": "request",
+          "viewName": "Request",
+          "type": "text",
+          "description": "The request details for the incident.",
+          "placeholder": "Request Details"
+        },
+        {
+          "name": "action",
+          "viewName": "Action",
+          "type": "text",
+          "description": "Describe the actions done to fix this incident. ",
+          "placeholder": "Provided required assitance."
+        },
+        {
+          "name": "actionInvisibleForCaller",
+          "viewName": "Action Invisible For Caller",
+          "type": "boolean",
+          "description": "Whether the action field is invisible for callers."
+        },
+        {
+          "name": "description",
+          "viewName": "Brief Description",
+          "type": "string",
+          "description": "Brief description of the incident.",
+          "placeholder": "Incident description"
+        },
+        {
+          "name": "entryType",
+          "viewName": "Entry Type",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listEntryTypesAuto",
+          "description": "The entry type of the incident.",
+          "placeholder": "My Alert Entry Type"
+        },
+        {
+          "name": "callType",
+          "viewName": "Call Type",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listCallTypesAuto",
+          "description": "The call type of the incident.",
+          "placeholder": "My Alert Call Type"
+        },
+        {
+          "name": "category",
+          "viewName": "Category",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listCategoriesAuto",
+          "description": "The category of the incident.",
+          "placeholder": "My Alert Category"
+        },
+        {
+          "name": "subcategory",
+          "viewName": "Subcategory",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listSubcategoriesAuto",
+          "description": "The subcategory of the incident.",
+          "placeholder": "My Alert Subategory"
+        },
+        {
+          "name": "externalNumber",
+          "viewName": "External Number",
+          "type": "string",
+          "description": "External number of the incident.",
+          "placeholder": "1234"
+        },
+        {
+          "name": "locationBranch",
+          "viewName": "Location Branch ID",
+          "type": "string",
+          "description": "The ID of the branch of the location associated with the incident.",
+          "placeholder": "12345678-90ab-cdef-1234-567890abcdef"
+        },
+        {
+          "name": "location",
+          "viewName": "Location ID",
+          "type": "string",
+          "description": "The ID of the location associated with the incident.",
+          "placeholder": "12345678-90ab-cdef-1234-567890abcdef"
+        },
+        {
+          "name": "impact",
+          "viewName": "Impact",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listImpactsAuto",
+          "description": "The impact of the incident.",
+          "placeholder": "My Incident Impact Type"
+        },
+        {
+          "name": "urgency",
+          "viewName": "Urgency",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listUrgenciesAuto",
+          "description": "The urgency of the incident.",
+          "placeholder": "My Incident Urgency Type"
+        },
+        {
+          "name": "priority",
+          "viewName": "Priority",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listPrioritiesAuto",
+          "description": "The priority of the incident.",
+          "placeholder": "P3"
+        },
+        {
+          "name": "operator",
+          "viewName": "Operator ID",
+          "type": "string",
+          "description": "The ID of the operator of the incident.",
+          "placeholder": "12345678-90ab-cdef-1234-567890abcdef"
+        },
+        {
+          "name": "processingStatus",
+          "viewName": "Processing Status",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listProcessingStatusesAuto",
+          "description": "The processing status of the incident.",
+          "placeholder": "My Incident Processing Status Type"
+        },
+        {
+          "name": "costs",
+          "viewName": "Costs",
+          "type": "string",
+          "description": "Total costs of the incident.",
+          "placeholder": "10.15"
         }
-    ]
+      ]
+    },
+    {
+      "name": "updateIncident",
+      "viewName": "Update Incident",
+      "params": [
+        {
+          "name": "url",
+          "viewName": "TopDesk URL",
+          "type": "string",
+          "placeholder": "https://example.topdesk.net/",
+          "description": "The URL to connect to TopDesk with."
+        },
+        {
+          "name": "username",
+          "viewName": "Username",
+          "type": "string",
+          "description": "The username of the user to authenticate to TopDesk with.",
+          "placeholder": "myuser",
+          "learnUrl": "https://developers.topdesk.com/tutorial.html"
+        },
+        {
+          "name": "appPassword",
+          "viewName": "Application Password",
+          "type": "vault",
+          "description": "The application password to authenticate to TopDesk with.",
+          "placeholder": "rk123-du234-wq345-agjjz-test1",
+          "learnUrl": "https://developers.topdesk.com/tutorial.html"
+        },
+        {
+          "name": "incident",
+          "viewName": "Incident",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listIncidentsAuto",
+          "description": "The incident to return information about."
+        },
+        {
+          "name": "callerLookup",
+          "viewName": "Caller Lookup",
+          "type": "string",
+          "description": "The ID/Email of the caller of the incident. Associate the incident with the caller with the specified field.",
+          "placeholder": "example@email.net"
+        },
+        {
+          "name": "request",
+          "viewName": "Request",
+          "type": "text",
+          "description": "The request details for the incident.",
+          "placeholder": "Request Details"
+        },
+        {
+          "name": "action",
+          "viewName": "Action",
+          "type": "text",
+          "description": "Describe the actions done to fix this incident. ",
+          "placeholder": "Provided required assitance."
+        },
+        {
+          "name": "actionInvisibleForCaller",
+          "viewName": "Action Invisible For Caller",
+          "type": "boolean",
+          "description": "Whether the action field is invisible for callers."
+        },
+        {
+          "name": "description",
+          "viewName": "Brief Description",
+          "type": "string",
+          "description": "Brief description of the incident.",
+          "placeholder": "Incident description"
+        },
+        {
+          "name": "entryType",
+          "viewName": "Entry Type",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listEntryTypesAuto",
+          "description": "The entry type of the incident.",
+          "placeholder": "My Alert Entry Type"
+        },
+        {
+          "name": "callType",
+          "viewName": "Call Type",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listCallTypesAuto",
+          "description": "The call type of the incident.",
+          "placeholder": "My Alert Call Type"
+        },
+        {
+          "name": "category",
+          "viewName": "Category",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listCategoriesAuto",
+          "description": "The category of the incident.",
+          "placeholder": "My Alert Category"
+        },
+        {
+          "name": "subcategory",
+          "viewName": "Subcategory",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listSubcategoriesAuto",
+          "description": "The subcategory of the incident.",
+          "placeholder": "My Alert Subategory"
+        },
+        {
+          "name": "externalNumber",
+          "viewName": "External Number",
+          "type": "string",
+          "description": "External number of the incident.",
+          "placeholder": "1234"
+        },
+        {
+          "name": "locationBranch",
+          "viewName": "Location Branch ID",
+          "type": "string",
+          "description": "The ID of the branch of the location associated with the incident.",
+          "placeholder": "12345678-90ab-cdef-1234-567890abcdef"
+        },
+        {
+          "name": "location",
+          "viewName": "Location ID",
+          "type": "string",
+          "description": "The ID of the location associated with the incident.",
+          "placeholder": "12345678-90ab-cdef-1234-567890abcdef"
+        },
+        {
+          "name": "impact",
+          "viewName": "Impact",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listImpactsAuto",
+          "description": "The impact of the incident.",
+          "placeholder": "My Incident Impact Type"
+        },
+        {
+          "name": "urgency",
+          "viewName": "Urgency",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listUrgenciesAuto",
+          "description": "The urgency of the incident.",
+          "placeholder": "My Incident Urgency Type"
+        },
+        {
+          "name": "priority",
+          "viewName": "Priority",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listPrioritiesAuto",
+          "description": "The priority of the incident.",
+          "placeholder": "P3"
+        },
+        {
+          "name": "operator",
+          "viewName": "Operator ID",
+          "type": "string",
+          "description": "The ID of the operator of the incident.",
+          "placeholder": "12345678-90ab-cdef-1234-567890abcdef"
+        },
+        {
+          "name": "processingStatus",
+          "viewName": "Processing Status",
+          "type": "autocomplete",
+          "autocompleteType": "function",
+          "functionName": "listProcessingStatusesAuto",
+          "description": "The processing status of the incident.",
+          "placeholder": "My Incident Processing Status Type"
+        },
+        {
+          "name": "costs",
+          "viewName": "Costs",
+          "type": "string",
+          "description": "Total costs of the incident.",
+          "placeholder": "10.15"
+        }
+      ]
+    },
+    {
+      "name": "listIncidents",
+      "viewName": "List Incidents",
+      "params": [
+        {
+          "name": "url",
+          "viewName": "TopDesk URL",
+          "type": "string",
+          "placeholder": "https://example.topdesk.net/",
+          "description": "The URL to connect to TopDesk with."
+        },
+        {
+          "name": "username",
+          "viewName": "Username",
+          "type": "string",
+          "description": "The username of the user to authenticate to TopDesk with.",
+          "placeholder": "myuser",
+          "learnUrl": "https://developers.topdesk.com/tutorial.html"
+        },
+        {
+          "name": "appPassword",
+          "viewName": "Application Password",
+          "type": "vault",
+          "description": "The application password to authenticate to TopDesk with.",
+          "placeholder": "rk123-du234-wq345-agjjz-test1",
+          "learnUrl": "https://developers.topdesk.com/tutorial.html"
+        },
+        {
+          "name": "fields",
+          "viewName": "Return Fields",
+          "type": "text",
+          "description": "If specified, return only the specified fields about the incidents. You can enter multiple values by seperating each with a new line or comma.",
+          "placeholder": "id\nnumber"
+        },
+        {
+          "name": "sort",
+          "viewName": "Sort By",
+          "type": "text",
+          "description": "If specified, the incidents in order by the specified fields. You can enter multiple values by seperating each with a new line or comma. By default all fields will be in ascending order. You can change the order of a field to descending by prefixing the name of the field with 'DESC '.",
+          "placeholder": "DESC number"
+        },
+        {
+          "name": "pageStart",
+          "viewName": "Page Start",
+          "type": "string",
+          "description": "For Paging. Return results starting from the index specified. 0 by default.",
+          "placeholder": "0"
+        },
+        {
+          "name": "pageSize",
+          "viewName": "pageSize",
+          "type": "string",
+          "description": "For Paging. Maximum number of incidents to return. 10 by default. Possible values are 1-10000.",
+          "learnUrl": "https://developers.topdesk.com/tutorial.html",
+          "placeholder": "10"
+        },
+        {
+          "name": "returnPartialsAndArchived",
+          "viewName": "Return Partials And Archived",
+          "type": "boolean",
+          "description": "Also return partial and archived incidents."
+        },
+        {
+          "name": "fiqlQuery",
+          "viewName": "FIQL Query",
+          "type": "string",
+          "description": "If specified, select which incidents should be returned by using the provided FIQL query.",
+          "learnUrl": "https://developers.topdesk.com/tutorial.html#query",
+          "placeholder": "id=sw=12345678-90ab"
+        }
+      ]
+    }
+  ],
+  "category": "ISSUE TRACKING"
 }
